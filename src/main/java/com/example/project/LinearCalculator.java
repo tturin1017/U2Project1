@@ -4,59 +4,20 @@ public class LinearCalculator{
     //4 integers variables (name them x1,x2,y1,y2) for the two pairs of coordinates
     private int x1, x2, y1, y2;
 
+
     //CONSTRUCTOR
-    //1 constructor with 2 parameters of String type. Each paramter represents a coordinate. 
+    //1 constructor with 2 String parameters. Each paramter represents a coordinate. 
     //For example, "(1,2)" and "(3,4)" would be two parameter values 
-    //You will have to parse the string into 4 integers, representing the 4 points
+    //You will have to parse the string into 4 integers, representing the 2 points.
     public LinearCalculator(String c1, String c2){
-        if(c1.substring(1,2).equals("-")){ 
-            //(-x,+/y)
-            x1 = Integer.parseInt(c1.substring(1,3));
-            if(c1.substring(4,5).equals("-")){
-                //(-x,-y)
-                y1 = Integer.parseInt(c1.substring(4,6));
-            }else{
-                //(-x,y)
-                y1 = Integer.parseInt(c1.substring(4,5));
-            }
-        }else{
-            //(x,+/y)
-            x1 = Integer.parseInt(c1.substring(1,2));
-            if(c1.substring(3,4).equals("-")){
-                //(x,-y)
-                y1 = Integer.parseInt(c1.substring(3,5));
-            }else{
-                //(x,y)
-                y1 = Integer.parseInt(c1.substring(3,4));
-            }
-        }
-        System.out.println("hi");
+        //find the delimiters 
+        int d1 = c1.indexOf(",");
+        int d2 = c2.indexOf(",");
 
-        if(c2.substring(1,2).equals("-")){ 
-            //(-x,+/y)
-            x2 = Integer.parseInt(c2.substring(1,3));
-            if(c2.substring(4,5).equals("-")){
-                //(-x,-y)
-                y2 = Integer.parseInt(c2.substring(4,6));
-            }else{
-                //(-x,y)
-                y2 = Integer.parseInt(c2.substring(4,5));
-            }
-        }else{
-            //(x,+/y)
-            x2 = Integer.parseInt(c2.substring(1,2));
-            if(c1.substring(3,4).equals("-")){
-                //(x,-y)
-                y2 = Integer.parseInt(c2.substring(3,5));
-            }else{
-                //(x,y)
-                y2 = Integer.parseInt(c2.substring(3,4));
-            }
-        }
-
-
-        
-
+        x1 = Integer.parseInt(c1.substring(1,d1));
+        y1 = Integer.parseInt(c1.substring(d1+1,c1.length()-1));
+        x2 = Integer.parseInt(c2.substring(1,d2));
+        y2 = Integer.parseInt(c2.substring(d2+1,c2.length()-1));
      
     }
 
@@ -67,6 +28,11 @@ public class LinearCalculator{
     public int getY1(){return y1;}
     public int getX2(){return x2;}
     public int getY2(){return y2;}
+    public void setX1(int x1){this.x1=x1;}
+    public void setY1(int y1){this.y1=y1;}
+    public void setX2(int x2){this.x2=x2;}
+    public void setY2(int y2){this.y2=y2;}
+
 
     //distance() -> returns a double. 
     //calculates the distance between the two points to the nearest HUNDREDTH and returns this value.
@@ -79,19 +45,27 @@ public class LinearCalculator{
 
     //yInt() -> returns a double.
     //calculates the y intercept of the equation and returns the value to the nearest HUNDREDTH
+    //if y-int if undefined, should return -999.99
     public double yInt(){
+        if(isUndefined()){
+            return -999.99;
+        }
         double b = y1 - slope()*x1;
         return roundedToHundredth(b);
     }
 
     //slope() -> returns a double. 
     //calculates the slope of the equations and returns the value to the nearest HUNDREDTH
+    //if slope is undefined, should return -999.99
     public double slope(){
+        if(isUndefined()){
+            return -999.99;
+        }
         double slope = (double) (y2 - y1) / (x2 - x1);
         return roundedToHundredth(slope);
     }
 
-    //equations() -> return a String.
+    //equations() -> returns a String.
     //calculates the final equation in y=mx+b form and returns the string
     //if the equation has no slope, the equation should return -> "undefined"
     //HINT: You may need other custom methods to lessen the amount of code in the equations() method
@@ -101,11 +75,13 @@ public class LinearCalculator{
         double slope = slope();
         //test for y-int == 0 
         if (yInt() == 0.0){
-            return "y="+slope+"x+";
+            return "y="+slope+"x";
         }
 
-        if(x1==x2){ //undefined
+        if(isUndefined()){ //undefined
             return "undefined";
+        }else if(isHorizontal()){
+            return "y="+y_int;
         }else{
             //deal with sign of y-int
             if (y_int<0.0){
@@ -133,6 +109,21 @@ public class LinearCalculator{
         str += "\nThe distance between the two points is: " + distance();
  
         return str;
+    }
+
+    //not required
+    public boolean isUndefined(){
+        if(x1==x2){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isHorizontal(){
+        if(y1==y2){
+            return true;
+        }
+        return false;
     }
 
 
