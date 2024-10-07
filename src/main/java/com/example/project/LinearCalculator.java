@@ -101,8 +101,8 @@ public class LinearCalculator{
     }
 
     public String printInfo(){
-        String str = "The two points are: (" + x1 + ", " + y1 + ")";
-        str += " and " + "(" + x2 + ", " + y2 + ")";
+        String str = "The two points are: (" + x1 + "," + y1 + ")";
+        str += " and " + "(" + x2 + "," + y2 + ")";
         str += "\nThe equation of the line between these points is: " + equation();
         str += "\nThe slope of this line is: " + slope();
         str += "\nThe y-intercept of the line is: " + yInt();
