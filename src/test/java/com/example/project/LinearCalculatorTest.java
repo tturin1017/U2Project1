@@ -96,7 +96,7 @@ public class LinearCalculatorTest {
     }
 
     @Test
-    void testPrintInfo(){
+    void testPrintInfo1(){
         LinearCalculator c = new LinearCalculator("(0,0)","(5,68)");
         String expectedOutput = "The two points are: (0,0)";
         expectedOutput += " and " + "(5,68)";
@@ -105,7 +105,25 @@ public class LinearCalculatorTest {
         expectedOutput += "\nThe y-intercept of the line is: 0.0";
         expectedOutput += "\nThe distance between the two points is: 68.18";
 
+        String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
+        studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
+        studentOutput += "\nThe equation of the line between these points is: " + c.equation();
+        studentOutput += "\nThe slope of this line is: " + c.slope();
+        studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
+        studentOutput += "\nThe distance between the two points is: " + c.distance();
+     
+        assertEquals(expectedOutput,studentOutput);
+    }
 
+    @Test
+    void testPrintInfo2(){
+        LinearCalculator c = new LinearCalculator("(2,1)","(4,-3)");
+        String expectedOutput = "The two points are: (2,1)";
+        expectedOutput += " and " + "(4,-3)";
+        expectedOutput += "\nThe equation of the line between these points is: y=-2.0x+5.0";
+        expectedOutput += "\nThe slope of this line is: -2.0";
+        expectedOutput += "\nThe y-intercept of the line is: 5.0";
+        expectedOutput += "\nThe distance between the two points is: 4.47";
 
         String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
         studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
@@ -114,7 +132,86 @@ public class LinearCalculatorTest {
         studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
         studentOutput += "\nThe distance between the two points is: " + c.distance();
      
+        assertEquals(expectedOutput,studentOutput);
+    }
 
+    @Test
+    void testPrintInfo3(){
+        LinearCalculator c = new LinearCalculator("(0,0)","(0,4)");
+        String expectedOutput = "The two points are: (0,0)";
+        expectedOutput += " and " + "(0,4)";
+        expectedOutput += "\nThe equation of the line between these points is: undefined";
+        expectedOutput += "\nThe slope of this line is: -999.99";
+        expectedOutput += "\nThe y-intercept of the line is: -999.99";
+        expectedOutput += "\nThe distance between the two points is: 4.0";
+
+        String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
+        studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
+        studentOutput += "\nThe equation of the line between these points is: " + c.equation();
+        studentOutput += "\nThe slope of this line is: " + c.slope();
+        studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
+        studentOutput += "\nThe distance between the two points is: " + c.distance();
+     
+        assertEquals(expectedOutput,studentOutput);
+    }
+
+    @Test
+    void testPrintInfo4(){
+        LinearCalculator c = new LinearCalculator("(-5,3)","(2,0)");
+        String expectedOutput = "The two points are: (-5,3)";
+        expectedOutput += " and " + "(2,0)";
+        expectedOutput += "\nThe equation of the line between these points is: y=-0.43x+0.85";
+        expectedOutput += "\nThe slope of this line is: -0.43";
+        expectedOutput += "\nThe y-intercept of the line is: 0.85";
+        expectedOutput += "\nThe distance between the two points is: 7.62";
+
+        String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
+        studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
+        studentOutput += "\nThe equation of the line between these points is: " + c.equation();
+        studentOutput += "\nThe slope of this line is: " + c.slope();
+        studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
+        studentOutput += "\nThe distance between the two points is: " + c.distance();
+     
+        assertEquals(expectedOutput,studentOutput);
+    }
+
+    @Test
+    void testPrintInfo5(){
+        LinearCalculator c = new LinearCalculator("(-5,1)","(1,1)");
+        String expectedOutput = "The two points are: (-5,1)";
+        expectedOutput += " and " + "(1,1)";
+        expectedOutput += "\nThe equation of the line between these points is: y=1.0";
+        expectedOutput += "\nThe slope of this line is: 0.0";
+        expectedOutput += "\nThe y-intercept of the line is: 1.0";
+        expectedOutput += "\nThe distance between the two points is: 6.0";
+
+        String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
+        studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
+        studentOutput += "\nThe equation of the line between these points is: " + c.equation();
+        studentOutput += "\nThe slope of this line is: " + c.slope();
+        studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
+        studentOutput += "\nThe distance between the two points is: " + c.distance();
+     
+        assertEquals(expectedOutput,studentOutput);
+    }
+
+    @Test
+    void testPrintInfo6(){
+        LinearCalculator c = new LinearCalculator("(10,5)","(6,-1)");
+        String expectedOutput = "The two points are: (10,5)";
+        expectedOutput += " and " + "(6,-1)";
+        expectedOutput += "\nThe equation of the line between these points is: y=1.5x-10.0";
+        expectedOutput += "\nThe slope of this line is: 1.5";
+        expectedOutput += "\nThe y-intercept of the line is: -10.0";
+        expectedOutput += "\nThe distance between the two points is: 7.21";
+
+        String studentOutput = "The two points are: (" + c.getX1() + "," + c.getY1() + ")";
+        studentOutput += " and " + "(" + c.getX2() + "," + c.getY2() + ")";
+        studentOutput += "\nThe equation of the line between these points is: " + c.equation();
+        studentOutput += "\nThe slope of this line is: " + c.slope();
+        studentOutput += "\nThe y-intercept of the line is: " + c.yInt();
+        studentOutput += "\nThe distance between the two points is: " + c.distance();
+     
         assertEquals(expectedOutput,studentOutput);
     }
 
